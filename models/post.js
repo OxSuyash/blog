@@ -11,7 +11,8 @@ const schema = new mongoose.Schema({
         required: true,
     },
     author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",  //this is reference of the collection from which we want to save object id
         required: true,
     },
     date: {
