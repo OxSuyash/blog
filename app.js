@@ -30,9 +30,15 @@ app.use(cors({
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE")
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type")
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type" )
     next()
 })
+
+// Custom middleware to handle preflight OPTIONS request
+app.options('/api/v1/post/new', (req, res) => {
+    // Set the status code to 200 OK
+    res.status(200).end();
+});
 
 
 
