@@ -2,6 +2,8 @@ import { User } from "../models/user.js";
 import bcrypt from "bcrypt"
 import { sendCookie } from "../utils/features.js";
 import ErrorHandler from "../middlewares/error.js";
+import { json } from "express";
+import { sendMail } from "../middlewares/sendMail.js";
 
 
 
@@ -68,4 +70,26 @@ export const logout = (req, res)=> {
         success: true,
         message: "logout successful",
     })
+}
+
+
+
+export const contact = async (req, res, next) => {
+    try {
+        
+           const {name, email, message} = req.body
+
+           const userMessage = `Hey, I am ${name}. My email is ${email}. My message is ${message}.`
+
+           await sendMail(userMessage)
+
+           return res.status(200).json({
+            success: true,
+            message: "Message sent successfully"
+           })
+        
+    } catch (error) {
+        next(error)
+        
+    }
 }
