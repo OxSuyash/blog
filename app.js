@@ -22,9 +22,17 @@ app.use(cors({
     origin: [process.env.FRONTEND_URL],  // requests are allowed only from this url
     methods: ["GET", "POST", "PUT", "DELETE"], //only these methods are allowed from above url
     credentials: true // to access cookie on frontend
+    
 
 
 }))
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE")
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type")
+    next()
+})
 
 
 
