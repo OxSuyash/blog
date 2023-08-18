@@ -21,8 +21,7 @@ app.use(cookieParser())
 app.use(cors({
     origin: [process.env.FRONTEND_URL],  // requests are allowed only from this url
     methods: ["GET", "POST", "PUT", "DELETE"], //only these methods are allowed from above url
-    credentials: true // to access cookie on frontend
-    
+    credentials: "include" // to access cookie on frontend
 
 
 }))

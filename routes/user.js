@@ -1,5 +1,5 @@
 import express from "express"
-import { contact, login } from "../controllers/user.js"
+import { contact, getMyProfile, login } from "../controllers/user.js"
 import { signUp } from "../controllers/user.js"
 import { logout } from "../controllers/user.js"
 import { isAuthenticated } from "../middlewares/auth.js"
@@ -15,6 +15,8 @@ router.post("/login", login)
 router.post("/contact", contact)
 
 router.get("/logout",isAuthenticated, logout)
+
+router.get("/profile", isAuthenticated, getMyProfile)
 
 
 export default router
