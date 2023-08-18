@@ -19,7 +19,7 @@ config({
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: "*",  // requests are allowed only from this url
+    origin: [process.env.FRONTEND_URL],  // requests are allowed only from this url
     methods: ["GET", "POST", "PUT", "DELETE"], //only these methods are allowed from above url
     credentials: "include" // to access cookie on frontend
 
