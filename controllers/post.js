@@ -9,7 +9,7 @@ export const newPost = async (req, res, next) => {
         await Post.create({
             title,
             body,
-            author: req.user
+            author: req.user._id
         })
 
         res.status(201).json({
